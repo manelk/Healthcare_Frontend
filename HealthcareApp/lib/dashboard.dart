@@ -9,9 +9,7 @@ import 'package:healthcareapp/theme/app_theme.dart';
 import 'package:intl/intl.dart';
 import 'package:mqtt_client/mqtt_client.dart';
 import 'package:mqtt_client/mqtt_server_client.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'dart:convert';
-import 'package:healthcareapp/weekly_chart.dart';
 import 'package:healthcareapp/chart_file.dart';
 
 class DashboardWidget extends StatefulWidget {
@@ -30,6 +28,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     "hcApp/steps"
   ];
   late String temprature = "0";
+
   //(double.parse(temprature)%100)*100
   late String frequency = "0";
   late String BO = "0";
@@ -40,6 +39,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   List<ChartData> ChartData1 = [];
   List<ChartData> ChartData3 = [];
   List<StepsDataModel> StepsDataList = [];
+
   @override
   void initState() {
     // TODO: implement initState
@@ -91,14 +91,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       onSurface: Colors.grey,
                     ),
                     onPressed: () {
-                      setState(() {
-                        fetchData();
-                      });
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NeumorphicTheme(
-                              theme: neumorphicTheme, child: ChartScreen()),
+                          builder: (context) =>
+                              NeumorphicTheme(
+                                  theme: neumorphicTheme, child: ChartScreen()),
                         ),
                       );
                     },
@@ -127,13 +125,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                      CrossAxisAlignment.center,
                                       children: [
                                         Padding(
                                           padding:
-                                              EdgeInsetsDirectional.all(20),
+                                          EdgeInsetsDirectional.all(20),
                                           child: Container(
                                             width: 50,
                                             height: 50,
@@ -166,9 +164,9 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                      MainAxisAlignment.start,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         SizedBox(
                                           width: 15,
@@ -185,12 +183,12 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                 children: [
                                                   Text(
                                                     (int.parse(steps) /
-                                                            1312.3359)
+                                                        1312.3359)
                                                         .toStringAsFixed(2),
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontWeight:
-                                                            FontWeight.bold,
+                                                        FontWeight.bold,
                                                         fontSize: 25),
                                                   ),
                                                   Text(
@@ -198,7 +196,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                                     textAlign: TextAlign.center,
                                                     style: TextStyle(
                                                         fontWeight:
-                                                            FontWeight.bold,
+                                                        FontWeight.bold,
                                                         fontSize: 23),
                                                   ),
                                                 ],
@@ -243,7 +241,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.4,
                               height: 150,
                               decoration: BoxDecoration(
                                 color: Colors.redAccent,
@@ -305,7 +306,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       ],
                     ),
                   ),
-              
+
                   // Cards for
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
@@ -317,7 +318,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.4,
                               height: 150,
                               decoration: BoxDecoration(
                                 color: Color(0xFF0056CD),
@@ -380,7 +384,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
                             child: Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
+                              width: MediaQuery
+                                  .of(context)
+                                  .size
+                                  .width * 0.4,
                               height: 150,
                               decoration: BoxDecoration(
                                 color: Color(0xFF0056CD),
@@ -466,7 +473,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             Center(
                               child: const Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 8),
                                 child: Text(
                                   'Temperature',
                                   style: TextStyle(
@@ -485,7 +492,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             ),
                             Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                              EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -540,9 +547,10 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     client.updates!.listen((List<MqttReceivedMessage<MqttMessage?>>? c) {
       final recMess = c![0].payload as MqttPublishMessage;
       final pt =
-          MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
+      MqttPublishPayload.bytesToStringAsString(recMess.payload.message);
       print(
-          'EXAMPLE::Change notification:: topic is <${c[0].topic}>, payload is <-- $pt -->');
+          'EXAMPLE::Change notification:: topic is <${c[0]
+              .topic}>, payload is <-- $pt -->');
       print("#################################");
       print(c[0].topic);
       print("#################################");
@@ -593,3 +601,4 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     print('*****************************************');
     print('Connected');
   }
+}

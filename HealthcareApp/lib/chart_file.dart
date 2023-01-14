@@ -19,25 +19,6 @@ class ChartScreen extends StatefulWidget {
 }
 
 class ChartScreenState extends State<ChartScreen> {
-
-  List<_StepsData> StepsData = [
-    _StepsData("63971062df459f5415893c0b", 1000, "2022-12-12"),
-    _StepsData("63971062df459f5415893c0b", 1200, "2022-11-12"),
-    _StepsData("63971062df459f5415893c0b", 100, "2022-15-12"),
-  ];
-
-  List<StepsDataModel> StepsData1 = [
-    StepsDataModel("63971062df459f5415893c0b", 1000, "2022-12-12"),
-    StepsDataModel("63971062df459f5415893c0b", 1200, "2022-11-12"),
-    StepsDataModel("63971062df459f5415893c0b", 100, "2022-15-12"),
-  ];
-  List<ChartData> ChartData2 = [
-    ChartData('Jan', 5, 9),
-    ChartData('Feb', 0, 11),
-    ChartData('Mar', 0, 13),
-    ChartData('Apr', 0, 17),
-    ChartData('May', 0, 50),
-  ];
   List<ChartData> ChartData1 = [];
   List<ChartData> ChartData3 = [];
   List<StepsDataModel> StepsDataList = [];
@@ -48,11 +29,7 @@ class ChartScreenState extends State<ChartScreen> {
     Future<List<dynamic>> future = StatApi.getNumberOfSteps();
     Future<List<dynamic>> futureFrequency = StatApi.getFrequency();
     futureFrequency.then((value) {
-      print(value);
-      print("FREQ");
       for (int i = 0; i < value.length; i++) {
-        print("value[i]");
-        print(value[i]['freqValue']);
         DateTime dt = DateTime.parse(value[i]['date']);
         String cleanDate = DateFormat('yyyy-MM-dd').format(dt);
         StepsDataList.add(StepsDataModel(
@@ -61,15 +38,6 @@ class ChartScreenState extends State<ChartScreen> {
     });
 
     future.then((value) {
-      print("@@@@@@@@@@");
-      // for (int i = 0; i < 50; i++) {
-      //   // print("value[i]");
-      //   // print(value[i]['_id']);
-      //   DateTime dt = DateTime.parse(value[i]['date']);
-      //   String cleanDate = DateFormat('yyyy-MM-dd').format(dt);
-      //   StepsDataList.add(StepsDataModel(value[i]['_id'],
-      //       double.parse(value[i]['NumberOfSteps']), cleanDate));
-      // }
       for (int i = 0; i < value.length; i++) {
         // print("value[i]");
         // print(value[i]['_id']);
@@ -78,29 +46,6 @@ class ChartScreenState extends State<ChartScreen> {
         ChartData3.add(
             ChartData(cleanDate, 0, double.parse(value[i]['NumberOfSteps'])));
       }
-      //  value.forEach((element) {
-      //   DateTime dt = DateTime.parse(element['date']);
-      //   String cleanDate = DateFormat('yyyy-MM-dd').format(dt);
-      //   StepsDataList.add(StepsDataModel(element['_id'], double.parse(element['NumberOfSteps']), cleanDate));
-      // });
-      // _id: String
-      // NumberOfSteps: String
-      // date: String
-      // value.map((e) =>
-      //     //print(e)
-      //     // ChartData3.add(
-      //     //   ChartData(
-      //     //       e._id, double.parse(e.NumberOfSteps), double.parse(e.date)),
-      //     // )
-      //
-      // );
-      //ChartData3.addAll(value.map((e) => ChartData(e._id, double.parse(e.NumberOfSteps), double.parse(e.date))));
-      // print(value.map((e) =>
-      //     //print(e)
-      //     ChartData(e._id, e.NumberOfSteps, e.date)));
-      // StepsDataList.addAll(value.map(
-      //   (e) => StepsDataModel(e._id, double.parse(e.NumberOfSteps), e.date),
-      // ));a
     });
   }
 
@@ -158,7 +103,6 @@ class ChartScreenState extends State<ChartScreen> {
                       color: Color(0xFFFF4646),
                     )
                   ]),
-
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Align(
@@ -169,7 +113,6 @@ class ChartScreenState extends State<ChartScreen> {
                   ),
                 ),
               ),
-
               SfCartesianChart(
                   primaryXAxis: CategoryAxis(),
                   // Chart title
@@ -193,22 +136,6 @@ class ChartScreenState extends State<ChartScreen> {
             ]),
           ),
         ));
-  }
-}
-
-class _StepsData {
-  _StepsData(this._id, this.NumberOfSteps, this.date);
-
-  final String _id;
-  final double NumberOfSteps;
-  final String date;
-
-  Map<String, dynamic> toMap(void Function(dynamic e) param0) {
-    return {
-      '_id': _id,
-      'NumberOfSteps': NumberOfSteps,
-      'date': date,
-    };
   }
 }
 

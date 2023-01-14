@@ -29,7 +29,6 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:healthcareapp/dashboard.dart';
 import 'package:healthcareapp/theme/app_theme.dart';
-import 'package:healthcareapp/weekly_chart.dart';
 
 void main() {
   runApp(MyApp());
