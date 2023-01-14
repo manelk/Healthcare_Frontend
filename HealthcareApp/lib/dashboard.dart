@@ -53,35 +53,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white,
-      //   automaticallyImplyLeading: false,
-      //   leading: IconButton(
-      //     // borderColor: Colors.transparent,
-      //     // borderRadius: 30,
-      //     // borderWidth: 1,
-      //     // buttonSize: 60,
-      //     icon: Icon(
-      //       Icons.arrow_back_rounded,
-      //       color: Colors.black,
-      //       size: 30,
-      //     ),
-      //     onPressed: () {
-      //       print('IconButton pressed ...');
-      //     },
-      //   ),
-      //   title: Text(
-      //     'Dashboard',
-      //     style: TextStyle(
-      //       fontFamily: 'Poppins',
-      //       color: Colors.black,
-      //       fontSize: 22,
-      //     ),
-      //   ),
-      //   actions: [],
-      //   centerTitle: true,
-      //   elevation: 2,
-      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -106,7 +77,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 25),
                             ),
-//                            print(kilometre = int.parse(steps)/1312)
                           ],
                         ),
                       ),
@@ -335,51 +305,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                       ],
                     ),
                   ),
-                  // Container(
-                  //   color: Colors.red,
-                  //   child: Column(
-                  //     children: [
-                  //       Row(
-                  //         children: [
-                  //           Text(
-                  //             "Blood Pressure",
-                  //             style: TextStyle(
-                  //               fontFamily: 'Poppins',
-                  //               fontSize: 15,
-                  //             ),
-                  //           ),
-                  //           Text(
-                  //             BloodPressure,
-                  //             style: TextStyle(
-                  //               fontFamily: 'Poppins',
-                  //               fontSize: 15,
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //       Row(
-                  //         children: [
-                  //           Text(
-                  //             "Frequency",
-                  //             style: TextStyle(
-                  //               fontFamily: 'Poppins',
-                  //               fontSize: 15,
-                  //             ),
-                  //           ),
-                  //           Text(
-                  //             frequency,
-                  //             style: TextStyle(
-                  //               fontFamily: 'Poppins',
-                  //               fontSize: 15,
-                  //             ),
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  //                  color: Colors.black87,
-                  // Generated code for this Container Widget...
+              
                   // Cards for
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 0),
@@ -659,13 +585,6 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       });
       print('');
     });
-
-    //final builder = MqttClientPayloadBuilder();
-    //  builder.addString(msg);
-    /// Publish it
-    //print('EXAMPLE::Publishing our topic');
-    //client.publishMessage(topic, MqttQos.exactlyOnce, builder.payload!);
-    /// End publish it
     return client;
   }
 
@@ -674,46 +593,3 @@ class _DashboardWidgetState extends State<DashboardWidget> {
     print('*****************************************');
     print('Connected');
   }
-
-  void fetchData() {
-    Future<List<dynamic>> future = StatApi.getNumberOfSteps();
-    // ChartData3.add(ChartData("x", 20, 50));
-    future.then((value) {
-      print("@@@@@@@@@@");
-      for (int i = 0; i < 50; i++) {
-        print("value[i]");
-        print(value[i]['_id']);
-        DateTime dt = DateTime.parse(value[i]['date']);
-        String cleanDate = DateFormat('yyyy-MM-dd').format(dt);
-        StepsDataList.add(StepsDataModel(value[i]['_id'],
-            double.parse(value[i]['NumberOfSteps']), cleanDate));
-      }
-
-      for (int i = 0; i < value.length; i++) {
-        print("value[i]");
-        print(value[i]['_id']);
-        DateTime dt = DateTime.parse(value[i]['date']);
-        String cleanDate = DateFormat('yyyy-MM-dd').format(dt);
-        ChartData3.add(
-            ChartData(cleanDate, 0, double.parse(value[i]['NumberOfSteps'])));
-      }
-      print("@@@@@@@@@@ StepsDataList");
-      print(StepsDataList.map((e) => print(e)));
-    });
-  }
-}
-
-class StepsDataModel {
-  StepsDataModel(this._id, this.NumberOfSteps, this.date);
-
-  final String _id;
-  final double NumberOfSteps;
-  final String date;
-}
-
-class ChartData {
-  ChartData(this.x, this.high, this.low);
-  final String x;
-  final double high;
-  final double low;
-}
