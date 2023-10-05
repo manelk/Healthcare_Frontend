@@ -5,8 +5,7 @@ As part of an IoT course, I created a healthcare mobile application that helps u
 The app allows users to follow their number of steps, heart rate, blood pressure, blood oxygen levels, and body temperature. With this information at their fingertips, users can better understand their over.
 
 ## Presentation: 
-[Manel Kacem - Healthcare project IOT.pdf
-](https://docs.google.com/presentation/d/1AtJBFbEPRpWrGMcmYakSn5kYWDiZVwuYaUSV8OSnadE/edit?usp=sharing)https://docs.google.com/presentation/d/1AtJBFbEPRpWrGMcmYakSn5kYWDiZVwuYaUSV8OSnadE/edit?usp=sharing
+[Google slides for the project presentation] https://docs.google.com/presentation/d/1AtJBFbEPRpWrGMcmYakSn5kYWDiZVwuYaUSV8OSnadE/edit?usp=sharing
 
 ## Front end technologies used:
 Flutter, HiveMQ (Broker), MQTT Protocol
